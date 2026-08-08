@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganana</title>
+
+    <!-- CSS LINK -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Ganana</h1>
+        <button class="mode-btn" onclick="toggleMode()">🌙</button>
+    </div>
+
+    <div class="container">
+
+        <div class="top-row">
+
+            <!-- LEFT -->
+            <div class="box">
+                <h2>Letter to Number</h2>
+
+                <div class="input-wrap">
+                    <input id="textInput" placeholder="Only Letters" oninput="this.value=this.value.replace(/[^A-Za-z]/g,'')">
+                    <button onclick="clearInput('textInput','r1')">Clear</button>
+                </div>
+
+                <button class="calc-btn" onclick="toNumber()">Calculate</button>
+
+                <div class="result-row">
+                    <div id="r1" class="result"></div>
+                    <button onclick="copyResult('r1')">Copy</button>
+                    <button onclick="toggleHistory('h1')">History</button>
+                </div>
+
+                <div id="h1" class="history"></div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="box">
+                <h2>Number to Letter</h2>
+
+                <div class="input-wrap">
+                    <input id="numInput" placeholder="Only Numbers" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    <button onclick="clearInput('numInput','r2')">Clear</button>
+                </div>
+
+                <button class="calc-btn" onclick="toAlphabet()">Calculate</button>
+
+                <div class="result-row">
+                    <div id="r2" class="result"></div>
+                    <button onclick="copyResult('r2')">Copy</button>
+                    <button onclick="toggleHistory('h2')">History</button>
+                </div>
+
+                <div id="h2" class="history"></div>
+            </div>
+
+        </div>
+
+        <!-- CENTER -->
+        <div class="box center-box">
+            <h2>Letter Addition (A + A = 2)</h2>
+
+            <div class="input-wrap">
+                <input id="sumInput" placeholder="Only Letters" oninput="this.value=this.value.replace(/[^A-Za-z]/g,'')">
+                <button onclick="clearInput('sumInput','r3')">Clear</button>
+            </div>
+
+            <button class="calc-btn" onclick="calcSum()">Calculate</button>
+
+            <div class="result-row">
+                <div id="r3" class="result"></div>
+                <button onclick="copyResult('r3')">Copy</button>
+                <button onclick="toggleHistory('h3')">History</button>
+            </div>
+
+            <div id="h3" class="history"></div>
+        </div>
+
+    </div>
+
+    <!-- JS LINK -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
