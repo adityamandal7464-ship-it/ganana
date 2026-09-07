@@ -14,7 +14,7 @@
 
     <div class="header">
         <h1>Ganana</h1>
-        <button class="mode-btn" onclick="toggleMode()">🌙</button>
+        <button class="mode-btn" onclick="toggleMode()" aria-label="Toggle theme">🌙</button>
     </div>
 
     <div class="container">
@@ -33,7 +33,7 @@
                 <button class="calc-btn" onclick="toNumber()">Calculate</button>
 
                 <div class="result-row">
-                    <div id="r1" class="result"></div>
+                    <div id="r1" class="result" aria-live="polite"></div>
                     <button onclick="copyResult('r1')">Copy</button>
                     <button onclick="toggleHistory('h1')">History</button>
                 </div>
@@ -53,7 +53,7 @@
                 <button class="calc-btn" onclick="toAlphabet()">Calculate</button>
 
                 <div class="result-row">
-                    <div id="r2" class="result"></div>
+                    <div id="r2" class="result" aria-live="polite"></div>
                     <button onclick="copyResult('r2')">Copy</button>
                     <button onclick="toggleHistory('h2')">History</button>
                 </div>
@@ -75,7 +75,7 @@
             <button class="calc-btn" onclick="calcSum()">Calculate</button>
 
             <div class="result-row">
-                <div id="r3" class="result"></div>
+                <div id="r3" class="result" aria-live="polite"></div>
                 <button onclick="copyResult('r3')">Copy</button>
                 <button onclick="toggleHistory('h3')">History</button>
             </div>
@@ -84,6 +84,9 @@
         </div>
 
     </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <!-- JS LINK -->
     <script src="script.js"></script>
