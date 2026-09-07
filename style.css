@@ -3,6 +3,8 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #000000, #0f2027, #203a43);
     color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .light {
@@ -10,65 +12,112 @@ body {
     color: black;
 }
 
+
+/* Header */
+
 .header {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 24px;
     position: relative;
+    padding: 0 16px;
 }
 
 .header h1 {
-    font-size: 150px;
+    font-size: clamp(48px, 15vw, 150px);
     margin: 0;
+    line-height: 1;
     background: linear-gradient(90deg, #00ffcc, #00ccff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+
+/* Mode button (moon) */
+
 .mode-btn {
     position: absolute;
-    right: 30px;
-    top: 20px;
+    right: 16px;
+    top: 12px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
 }
+
+
+/* Container and layout */
 
 .container {
     width: 95%;
     max-width: 1100px;
-    margin: 100px auto;
+    margin: 40px auto;
+    box-sizing: border-box;
+    padding-bottom: 40px;
 }
 
 .top-row {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 24px;
+    flex-wrap: wrap;
 }
+
+
+/* Boxes */
 
 .box {
     width: 45%;
-    padding: 70px;
+    min-width: 260px;
+    padding: 48px;
     background: rgba(255, 255, 255, 0.08);
-    border-radius: 25px;
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.18);
+    box-sizing: border-box;
+    transition: transform 0.15s ease;
 }
 
+.box h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+
+/* Center box */
+
 .center-box {
-    margin-top: 50px;
+    margin-top: 32px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding: 48px;
 }
+
+
+/* Inputs and buttons */
 
 .input-wrap {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 input {
     flex: 1;
-    padding: 20px;
+    padding: 16px;
     border-radius: 12px;
     border: none;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    background: rgba(255, 255, 255, 0.03);
+    color: inherit;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .calc-btn {
@@ -79,30 +128,57 @@ input {
     background: #00ffcc;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
 }
 
 button {
-    padding: 12px 20px;
+    padding: 10px 14px;
     border-radius: 12px;
     border: none;
     background: #00ffcc;
     cursor: pointer;
     font-weight: bold;
+    font-size: 15px;
 }
+
+
+/* Make touch targets slightly larger on mobile */
+
+@media (max-width: 480px) {
+    .mode-btn {
+        font-size: 18px;
+        padding: 10px;
+    }
+    button,
+    .calc-btn {
+        padding: 14px 18px;
+        font-size: 16px;
+    }
+    input {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+
+/* Result & history */
 
 .result-row {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 16px;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .result {
     flex: 1;
-    padding: 16px;
-    background: rgba(0, 255, 204, 0.15);
+    padding: 12px;
+    background: rgba(0, 255, 204, 0.12);
     border-radius: 12px;
-    font-size: 26px;
+    font-size: 20px;
+    min-width: 0;
+    word-break: break-word;
 }
 
 .history {
@@ -115,7 +191,107 @@ button {
     border-radius: 8px;
 }
 
+
+/* Clear button styling remains same but sized properly */
+
 .clear-btn {
     background: red;
     color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+
+/* Smaller screens adjustments */
+
+@media (max-width: 900px) {
+    .box {
+        width: 100%;
+        padding: 28px;
+        border-radius: 16px;
+    }
+    .center-box {
+        width: 100%;
+        padding: 28px;
+    }
+    .top-row {
+        gap: 16px;
+    }
+    .container {
+        margin: 20px auto;
+    }
+}
+
+
+/* Very small phones */
+
+@media (max-width: 360px) {
+    .header h1 {
+        font-size: clamp(40px, 20vw, 70px);
+    }
+    .input-wrap {
+        gap: 8px;
+    }
+    .input-wrap input {
+        font-size: 15px;
+        padding: 12px;
+    }
+    .result {
+        font-size: 18px;
+        padding: 10px;
+    }
+}
+
+
+/* Accessibility: focus states */
+
+button:focus,
+input:focus {
+    outline: 2px solid rgba(0, 255, 204, 0.45);
+    outline-offset: 2px;
+}
+
+
+/* Preserve same visual colors and feel on light-mode */
+
+.light .box {
+    background: rgba(0, 0, 0, 0.03);
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Toast notifications */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 28px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 9999;
+    display: none;
+    pointer-events: none;
+}
+
+.toast.show {
+    display: block;
+    animation: toast-in 0.2s ease;
+}
+
+@keyframes toast-in {
+    from {
+        transform: translateX(-50%) translateY(8px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
 }
